@@ -15,18 +15,18 @@
         selected = selected;
     }
     const notes = [
-        {note: Notes.F0, c: "white f"},
-        {note: Notes.F0sharp, c: "black fs"},
-        {note: Notes.G0, c: "white g"},
-        {note: Notes.G0sharp, c: "black gs"},
-        {note: Notes.A1, c: "white a"},
-        {note: Notes.A1sharp, c: "black as"},
-        {note: Notes.B1, c: "white b"},
-        {note: Notes.C1, c: "white c"},
-        {note: Notes.C1sharp, c: "black cs"},
-        {note: Notes.D1, c: "white d"},
-        {note: Notes.D1sharp, c: "black ds"},
-        {note: Notes.E1, c: "white e"},
+        {note: Notes.F0, c: "white f", text: "F"},
+        {note: Notes.F0sharp, c: "black fs", text: ""},
+        {note: Notes.G0, c: "white g", text: "G"},
+        {note: Notes.G0sharp, c: "black gs", text: ""},
+        {note: Notes.A1, c: "white a", text: "A"},
+        {note: Notes.A1sharp, c: "black as", text: ""},
+        {note: Notes.B1, c: "white b", text: "B"},
+        {note: Notes.C1, c: "white c", text: "C"},
+        {note: Notes.C1sharp, c: "black cs", text: ""},
+        {note: Notes.D1, c: "white d", text: "D"},
+        {note: Notes.D1sharp, c: "black ds", text: ""},
+        {note: Notes.E1, c: "white e", text: "E"},
     ]
     const getColor = (isCorrect: Boolean) => isCorrect ? "rgba(91, 178, 77, 0.597)" : "#ffdc5144";
     const playSelected = () => {
@@ -42,8 +42,14 @@
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <ul style="--select-color: {getColor(isCorrect)}" class="set">
-        {#each notes as {note, c}}
-            <li on:touchstart={()=>play(note)} on:mousedown={()=>!isTouch && play(note)} on:click={()=>select_note(note)} class:selected={selected.includes(note)} class={c}></li>
+        {#each notes as {note, c, text}}
+            <li
+            on:touchstart={()=>play(note)}
+            on:mousedown={()=>!isTouch && play(note)}
+            on:click={()=>select_note(note)}
+            class:selected={selected.includes(note)} class={c}>
+                <span class="notename">{text}</span>
+            </li>
         {/each}
     </ul>
 </div>
@@ -82,6 +88,7 @@
     }
 
     ul {
+        background-color: #eee;
         padding: 0;
         margin: 0;
         height: var(--white-height);
@@ -96,6 +103,9 @@
         position: relative;
         float: left;
         text-align: center;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
     }
 
     ul .white {
@@ -180,5 +190,12 @@
     .d,
     .e {
         margin: 0 0 0 calc(-2*50vw / (3*var(--number-of-whites) + 0.25));
+    }
+
+    .notename {
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: bolder;
+        padding-bottom: 10px;
+        color: rgba(139, 146, 136, 0.504);
     }
 </style>
