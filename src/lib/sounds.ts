@@ -1,4 +1,5 @@
 import { Howl } from 'howler';
+import { base } from '$app/paths';
 
 enum Notes {
     A0 = 0,
@@ -31,41 +32,40 @@ enum Notes {
     __LENGTH
 }
 
-const paths = [
-    "/samples/220-A.mp3",
-    "/samples/246-B.mp3",
-    "/samples/261-C.mp3",
-    "/samples/277-C-sharp.mp3",
-    "/samples/293-D.mp3",
-    "/samples/311-D-sharp.mp3",
-    "/samples/329-E.mp3",
-    "/samples/349-F.mp3",
-    "/samples/369F-sharp.mp3",
-    "/samples/391-G.mp3",
-    "/samples/415-G-sharp.mp3",
-    "/samples/440-A.mp3",
-    "/samples/466-A-sharp.mp3",
-    "/samples/495-B.mp3",
-    "/samples/523-C.mp3",
-    "/samples/545-C-sharp.mp3",
-    "/samples/587-D.mp3",
-    "/samples/622-D-sharp.mp3",
-    "/samples/659-E.mp3",
-    "/samples/698-F-sharp.mp3",
-    "/samples/698-F.mp3",
-    "/samples/783-G.mp3",
-    "/samples/830-G-sharp.mp3",
-    "/samples/880-A.mp3",
-    "/samples/932-A-sharp.mp3",
-    "/samples/987-B.mp3",
-    "/samples/1046-C.mp3",
+const filenames = [
+    "220-A.mp3",
+    "246-B.mp3",
+    "261-C.mp3",
+    "277-C-sharp.mp3",
+    "293-D.mp3",
+    "311-D-sharp.mp3",
+    "329-E.mp3",
+    "349-F.mp3",
+    "369F-sharp.mp3",
+    "391-G.mp3",
+    "415-G-sharp.mp3",
+    "440-A.mp3",
+    "466-A-sharp.mp3",
+    "495-B.mp3",
+    "523-C.mp3",
+    "545-C-sharp.mp3",
+    "587-D.mp3",
+    "622-D-sharp.mp3",
+    "659-E.mp3",
+    "698-F-sharp.mp3",
+    "698-F.mp3",
+    "783-G.mp3",
+    "830-G-sharp.mp3",
+    "880-A.mp3",
+    "932-A-sharp.mp3",
+    "987-B.mp3",
+    "1046-C.mp3",
 ]
 
-const sounds = paths.map((path, i) => {
+const sounds = filenames.map((filename, i) => {
     return new Howl({
-        src: [path],
+        src: [`${base}/samples/${filename}`],
         volume: 0.9,
-        // html5: true
     });
 });
 
