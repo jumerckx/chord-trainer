@@ -4,17 +4,19 @@
     import { Notes } from "$lib/sounds";
     import { fade } from "svelte/transition";
 
+    const nrPicks = 2;
+
     const pickChord = () => {
-        const shuffled = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16].sort(()=>{return 0.5 - Math.random()});
-        return shuffled.slice(0, 3);
+        const shuffled = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25].sort(()=>{return 0.5 - Math.random()});
+        return shuffled.slice(0, nrPicks);
     }
     const next = () => {
         picked = pickChord();
         selected = [];
     }
     const checkSelected = (selected: Notes[]) => {
-        if (selected.length == 3) {
-            for (let i = 0; i < 3; i++) {
+        if (selected.length == nrPicks) {
+            for (let i = 0; i < nrPicks; i++) {
                 if (!picked.includes(selected[i])) {
                     return false;
                 }
